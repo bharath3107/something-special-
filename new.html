@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sorry & Thanks Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fancy Font from Google -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: #ffcce0; /* Baby pink */
+      font-family: 'Dancing Script', cursive;
+      color: #b30059; /* Deep pink for contrast */
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 20px;
+      background-color: #fff0f5; /* Soft white-pink box */
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      font-size: 1.8rem;
+      margin: 30px 0;
+      line-height: 1.8;
+      padding: 20px;
+      border-radius: 15px;
+      background-color: #ffe6f0;
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1.5s ease-in;
+    }
+
+    .visible {
+      opacity: 1;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff66b2;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: #ff3385;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌸 A Small Note From Me 🌸</h1>
+
+    <div id="sorryNote" class="note fade-in">
+      Today is your birthday, and I couldn't let it pass without reaching out. It’s been 8 months since everything changed between us, and not a single day has gone by where I haven’t thought about what I lost. I’m so deeply sorry for the pain our conflict caused. Looking back, I realize how much you truly mean to me, how your presence filled my days with light, and how empty it felt without my best friend by my side.
+
+I miss those endless conversations, the way you understood me without words, and all the dreams we shared. Life just hasn’t been the same. I hope that, with time, we can heal what’s been broken and find a way back to each other. I’ll always treasure the bond we had—and I’d give anything for the chance to build something even stronger.
+
+No matter what, I hope your birthday is as beautiful and inspiring as you are. If your heart allows, I’d love nothing more than to call you my best friend again. 🌹🌌
+    </div>
+
+    <div id="thanksNote" class="note fade-in" style="display: none;">
+      I just want to say thank you, from the bottom of my heart, for being such an incredible person in my life. No words can truly capture how grateful I am for you. Even with everything we’ve been through, you’ve shown me what true friendship means, and I feel so lucky that our paths crossed.
+
+You bring warmth and light into my world in ways you might never realize. Your kindness, strength, and understanding have touched my life so deeply. I cherish the laughter, the conversations that go on for hours, and the way you always seem to know what I need, even when I can’t put it into words.
+
+Thank you for being you—for the memories, the lessons, and the hope you bring. I really can't imagine my journey without you beside me. 🌅🦋
+
+Here’s to more adventures, more growth, and more moments where we remind each other just how special this friendship is 🌻✨
+    </div>
+
+    <div id="birthdayNote" class="note fade-in" style="display: none;">
+      🎉 Many More Happy Returns of the Day! 🎉
+    </div>
+
+    <button id="nextBtn" onclick="toggleNotes()">Next</button>
+  </div>
+
+  <script>
+    let noteStep = 0;
+
+    function toggleNotes() {
+      const sorry = document.getElementById('sorryNote');
+      const thanks = document.getElementById('thanksNote');
+      const birthday = document.getElementById('birthdayNote');
+      const btn = document.getElementById('nextBtn');
+
+      if (noteStep === 0) {
+        sorry.style.display = 'none';
+        thanks.style.display = 'block';
+        setTimeout(() => thanks.classList.add('visible'), 100);
+        btn.innerText = 'Next';
+      } else if (noteStep === 1) {
+        thanks.classList.remove('visible');
+        setTimeout(() => {
+          thanks.style.display = 'none';
+          birthday.style.display = 'block';
+          setTimeout(() => birthday.classList.add('visible'), 100);
+        }, 500);
+        btn.innerText = 'Finish';
+      } else if (noteStep === 2) {
+        // Show birthday note again and keep it visible
+        birthday.style.display = 'block';
+        setTimeout(() => birthday.classList.add('visible'), 100);
+        btn.style.display = 'none';
+      }
+      noteStep++;
+    }
+
+    // Fade in the sorry note initially
+    window.onload = () => {
+      document.getElementById('sorryNote').classList.add('visible');
+      // Try to play music on load (some browsers may require user interaction)
+      const music = document.getElementById('bg-music');
+      if (music) {
+        music.volume = 0.5;
+        music.play().catch(()=>{});
+      }
+    };
+  </script>
+
+</body>
+</html>
